@@ -1,0 +1,176 @@
+<!-- <div *ngFor="let data of taskList">
+       <p>{{data.message}}</p>
+       <p>{{data.due_date}}</p>
+       <p>{{data.assigned_name}}</p>
+       <button class="btn btn-danger"  (click)=deleteData(data.id)>delete</button>
+       <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" (click)="autoFillUserForm(data)">edit</button>
+  </div>
+   -->
+
+<!--Create Model Start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="createForm" (ngSubmit)="createFormData()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Create task</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Enter a message</mat-label>
+                            <input matInput type="text" class="form-control" formControlName="message">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Due Date</mat-label>
+                            <input matInput type="date" class="form-control" formControlName="due_date">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>priority</mat-label>
+                            <mat-select class="form-control" formControlName="priority">
+                                <mat-option value="1">1</mat-option>
+                                <mat-option value="2">2</mat-option>
+                                <mat-option value="3">3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>assigned_to</mat-label>
+                            <mat-select class="form-control" formControlName="assigned_to">
+                                <mat-option [value]="user.id" *ngFor="let user of users">{{user.name}}</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" #closedModel data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create task</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--Create Model Closed-->
+
+
+<!--Edit Model Start-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="editForm" (ngSubmit)="editFormData()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Edit task</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Enter a message</mat-label>
+                            <input matInput type="text" class="form-control" formControlName="message">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Due Date</mat-label>
+                            <input matInput type="date" class="form-control" formControlName="due_date">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>priority</mat-label>
+                            <mat-select class="form-control" formControlName="priority">
+                                <mat-option value="1">1</mat-option>
+                                <mat-option value="2">2</mat-option>
+                                <mat-option value="3">3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>assigned_to</mat-label>
+                            <mat-select class="form-control" formControlName="assigned_to">
+                                <mat-option [value]="user.id" *ngFor="let user of users">{{user.name}}</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" #editclosedModel
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save task</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Edit Model Closed-->
+
+<div class="wrapper">
+    <div class="app-bar">
+        <h2 class="m-0 text-center">Mini Task Management</h2>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 p-5">
+            <div class="pb-3 d-flex justify-content-end">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                   Create Task
+                </button>
+            </div>
+            <div *ngIf="taskList.length === 0" class="loader-area">
+                <p class="loading-text">Loading...</p>
+            </div>
+            <div *ngIf="taskList.length != 0">
+                <div class="custom-card" *ngFor="let data of taskList.slice().reverse() ">
+                    <!-- <mat-icon class="delete-icon" >delete</mat-icon> -->
+                    <div class="dropdown   dropup">
+                        <mat-icon class="delete-icon dropdown-toggle-left " data-bs-toggle="dropdown"
+                            id="dropdownMenuButton1" aria-expanded="false">cancel</mat-icon>
+                        <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton1">
+                            <p>Are you sure ?</p>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button class="btn btn-danger btn-sm" (click)=deleteData(data.id)>ok</button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-secondary btn-sm">cancle</button>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                    <h2 class="task-name m-0">{{data.message}}</h2>
+                    <p class="text-muted">Due Date: <span class="date-text fw-bold">{{data?.created_on}}</span></p>
+                    <p class="text-muted">Priority: <span class="date-text mute fw-bold">{{data?.priority}}</span></p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                                class="avatar">
+                            <small class=" m-0 ms-3">{{data.assigned_name}}</small>
+                        </div>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
+                            (click)="autoFillUserForm(data)">Update</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

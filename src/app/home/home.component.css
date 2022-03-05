@@ -1,0 +1,81 @@
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: unset;
+}
+
+.custom-card {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px whitesmoke;
+    padding: 24px;
+    background-color: white;
+    width: 100%;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+
+.custom-card:hover {
+    background-color: #fce9d5;
+}
+.avatar {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .delete-icon {
+      color: #ff8686;
+  }
+
+  .dropdown {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+  }
+
+  .app-bar {
+      background-color: #003049;
+      padding: 20px;
+      color: white;
+      font-weight: 900;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0px 0px 10px gainsboro;
+  }
+
+  .wrapper {
+    padding-top: 60px;
+  }
+
+  .btn-primary {
+      background-color: #FCBF49;
+      border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #ffbc35;
+}
+
+.btn-secondary {
+    background-color: #003049;
+    border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #002336;
+}
+
+.loader-area {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-text {
+    color: rgb(185, 185, 185);
+    font-weight: 500;
+    font-size: 24px;
+}
