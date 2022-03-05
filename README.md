@@ -1,5 +1,9 @@
 # TaskManagerApp
 
+
+![Screenshot (50)](https://user-images.githubusercontent.com/84716166/156869945-d6b2fb86-c40f-400e-95a5-3f7594720b95.png)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
 ## Development server
